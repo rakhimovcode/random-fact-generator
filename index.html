@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomy</title>
+</head>
+<style>
+    *{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+html {
+    background-color: blue;
+}
+h1{
+    font-size: 50px;
+    text-align: center;
+}
+div{
+    
+    background-color: white;
+    width: 50%;
+    height: 710px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 40px;
+}
+
+button{
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease-out, box-shadow 0.1s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+button:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+h3{
+  display: none;
+  text-align: center; 
+  max-width: 80%
+}
+</style>
+<body>
+   <div class="container">
+     <h1>Discover new facts!</h1>
+     <h3 id="myheading">Hi</h3>
+     <button id="mybutton" type="submit"><h2>Get a random fact</h2></button>
+   </div>
+</body>
+<script>
+ const button = document.getElementById("mybutton")
+  button.addEventListener("click", async function() {
+    let data = await fetch(`https://uselessfacts.jsph.pl/api/v2/facts/random?language=en`);
+    let final = await data.json()
+    const h3 = document.querySelector("#myheading")
+    if(h3){
+      h3.textContent = final.text
+      h3.style.display = "block"
+    }
+   
+  });
+ 
+</script> 
+</html>
